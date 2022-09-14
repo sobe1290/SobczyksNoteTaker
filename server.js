@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
+const uuid = require('./helpers/uuid');
 const notes = require('./db/db.json');
 const fs = require('fs');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +25,7 @@ app.post('/api/notes', (req, res) => {
     const newNote = {
       title,
       text,
+      id: uuid(),
     };
 
     fs.readFile('./db/db.json', function (err, data) {
@@ -34,11 +36,13 @@ app.post('/api/notes', (req, res) => {
       ? console.error(err)
       : console.log(`New Note --${newNote.title}-- added`)
       );  
-    })  
+      
+    }) 
+    
+    res.json(newNote);
     };
   });
 
-//Question for self: does this part need to be changed for Heroku?
 app.listen(PORT, () =>
   console.log(`Example app listening at http://localhost:${PORT}`)
 );
