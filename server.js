@@ -19,6 +19,9 @@ app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.
 
 app.get('/api/notes', (req, res) => res.json(notes));
 
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.html'))
+);
+
 app.post('/api/notes', (req, res) => {
   const { title, text } = req.body;
   if (title && text) {
@@ -32,14 +35,14 @@ app.post('/api/notes', (req, res) => {
       var parsedobj = JSON.parse(data);
       parsedobj.push(newNote)
       fs.writeFile('./db/db.json', JSON.stringify(parsedobj), (err) =>
-      err
-      ? console.error(err)
-      : console.log(`New Note --${newNote.title}-- added`)
-      );  
+        err
+        ? console.error(err)
+        : res.json(parsedobj)    
+        );  
       
-    }) 
+    })
     
-    res.json(newNote);
+    
     };
   });
 

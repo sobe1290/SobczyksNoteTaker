@@ -71,7 +71,7 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value,
   };
-  saveNote(newNote).then(() => {
+saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -150,8 +150,9 @@ const renderNoteList = async (notes) => {
 
       liEl.append(delBtnEl);
     }
-
+    
     return liEl;
+    
   };
 
   if (jsonNotes.length === 0) {
@@ -168,6 +169,7 @@ const renderNoteList = async (notes) => {
   if (window.location.pathname === '/notes') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
+
 };
 
 // Gets notes from the db and renders them to the sidebar
@@ -179,5 +181,6 @@ if (window.location.pathname === '/notes') {
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
+
 
 getAndRenderNotes();
