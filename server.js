@@ -45,13 +45,24 @@ app.post('/api/notes', (req, res) => {
         err
         ? console.error(err)
         : res.json(parsedobj)    
-        );  
-      
-    })
-    
-    
-    };
-  });
+        );        
+    });    
+  };
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+  let targetId = req.params.id
+  fs.readFile('./db/db.json', function (err, data) {
+    var stagedArray = JSON.parse(data);
+    trimmedArray = stagedArray.filter(object => object.id !== targetId);    
+    fs.writeFile('./db/db.json', JSON.stringify(trimmedArray), (err) =>
+        err
+        ? console.error(err)
+        : res.json(trimmedArray)    
+        ); 
+    });
+});
+
 
 app.listen(PORT, () =>
   console.log(`Example app listening at http://localhost:${PORT}`)
