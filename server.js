@@ -17,9 +17,16 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html'
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.html'))
 );
 
-app.get('/api/notes', (req, res) => res.json(notes));
+app.get('/api/notes', (req, res) => {
+  fs.readFile('./db/db.json', function (err, data) {
+    var gotFile = JSON.parse(data);
+    res.json(gotFile)
+  });
+  });
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.html'))
+  
+
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html'))
 );
 
 app.post('/api/notes', (req, res) => {
