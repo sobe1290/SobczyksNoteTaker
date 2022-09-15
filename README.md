@@ -21,6 +21,10 @@
   This application is deployed using Heroku. It can be visited at https://pacific-hollows-12749.herokuapp.com/.
 
   A user can add notes on the right hand side, title and text, and then press save to add it to the notes saved on the left. A user can delete any of the saved notes by clicking on the trash can icon. A prior note can be viewed by clicking on it, and it will be brought back to the right side. The plus icon on the top right can be clicked on clear the form for a new note. Below are screenshots of the application.
+  ![indexpage](https://user-images.githubusercontent.com/26222624/190327011-163ca80c-d388-45cd-805c-7433cfcd34c0.jpg)
+
+  ![notespage](https://user-images.githubusercontent.com/26222624/190327031-78e8a854-b66c-4c95-b39a-0b240be1399a.jpg)
+
 
   ## License 
 
